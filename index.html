@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>claudeup - Manage Claude Code plugins, profiles, and sandboxes</title>
+  <meta name="description" content="One-click installer for managing Claude Code plugins, profiles, and sandboxed environments.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: #58a6ff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #f0f6fc;
+    }
+
+    .tagline {
+      color: #8b949e;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .install-box {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .install-command {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+      font-size: 0.95rem;
+      color: #58a6ff;
+      flex: 1;
+      text-align: left;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: #8b949e;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+    }
+
+    .copy-btn:hover {
+      background: #21262d;
+      color: #c9d1d9;
+      border-color: #8b949e;
+    }
+
+    .copy-btn.copied {
+      color: #3fb950;
+      border-color: #3fb950;
+    }
+
+    .footer {
+      margin-top: 1rem;
+    }
+
+    .footer a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer a:hover {
+      color: #58a6ff;
+      text-decoration: underline;
+    }
+
+    /* Fork me ribbon */
+    .github-ribbon {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .github-ribbon a {
+      position: absolute;
+      top: 42px;
+      right: -43px;
+      width: 200px;
+      padding: 8px 0;
+      background: #58a6ff;
+      color: #0d1117;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transform: rotate(45deg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .github-ribbon a:hover {
+      background: #79b8ff;
+    }
+
+    @media (max-width: 600px) {
+      .logo-text {
+        font-size: 1.5rem;
+      }
+
+      .install-command {
+        font-size: 0.8rem;
+      }
+
+      .github-ribbon {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="github-ribbon">
+    <a href="https://github.com/claudeup/claudeup">Fork me on GitHub</a>
+  </div>
+
+  <div class="container">
+    <div class="logo">
+      <div class="logo-icon">▶</div>
+      <span class="logo-text">claudeup</span>
+    </div>
+
+    <p class="tagline">Manage Claude Code plugins, profiles, and sandboxes</p>
+
+    <div class="install-box">
+      <code class="install-command">curl -fsSL https://claudeup.github.io/install.sh | bash</code>
+      <button class="copy-btn" onclick="copyCommand()">Copy</button>
+    </div>
+
+    <div class="footer">
+      <a href="https://github.com/claudeup/claudeup#readme">Documentation</a>
+    </div>
+  </div>
+
+  <script>
+    function copyCommand() {
+      const command = 'curl -fsSL https://claudeup.github.io/install.sh | bash';
+      navigator.clipboard.writeText(command).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
